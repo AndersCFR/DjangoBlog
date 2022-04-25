@@ -1,0 +1,2 @@
+# DjangoBlog
+Example for deployment
