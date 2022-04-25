@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,9 +8,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+with open('../secret.json') as f:
+    secret = json.loads(f.read())
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&&*5hk)0g#730vjjp0$ph2qjd7$zd^-o4+9c%+6!*k+s5r4z6w'
 
+def get_secret(secret_name, secrets=secret):
+    try:
+        return secrets[secret_name]
+    except:
+        msg = "Seceret wasnt found"
+        raise ImportError('Error en carga de ')
+
+
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # Application definition
 

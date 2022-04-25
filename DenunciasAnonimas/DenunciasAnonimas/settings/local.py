@@ -1,6 +1,6 @@
 from pathlib import Path
 from .base import *
-
+import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,9 +17,9 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'denuncias',
-        'USER': 'postgres',
-        'PASSWORD': 'anderson',
+        'NAME': get_secret('DB_NAME'),
+        'USER': get_secret('USER'),
+        'PASSWORD': get_secret('PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
     }
